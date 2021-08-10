@@ -16,11 +16,9 @@ class _NewTransactionState extends State<NewTransaction> {
   final amountController = TextEditingController();
 
   void _submitTransaction() {
+    widget.addNewTransaction(
+        titleController.text, double.parse(amountController.text));
     Navigator.of(context).pop();
-    final enteredTitle = titleController.text;
-    final enteredAmount = amountController.text;
-    if (enteredTitle.isEmpty || enteredAmount.isEmpty) return;
-    widget.addNewTransaction(enteredTitle, enteredAmount);
   }
 
   @override
