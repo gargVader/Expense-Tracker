@@ -18,6 +18,10 @@ class _UserTransactionsState extends State<UserTransactions> {
   ];
 
   void _addNewTransaction(String title, double amount) {
+    if (title.isEmpty || amount <= 0) {
+      return;
+    }
+
     final newTransaction = Transaction(
         id: DateTime.now().toString(),
         title: title,
