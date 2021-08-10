@@ -1,14 +1,27 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
+  Function addNewTransaction;
 
+  NewTransaction(this.addNewTransaction);
+
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+/// State class has context, widget internally
+class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
+
   final amountController = TextEditingController();
 
-  Function addNewTransaction;
-  NewTransaction(this.addNewTransaction);
+  void _submitTransaction() {
+    Navigator.of(context).pop();
+    final enteredTitle = titleController.text;
+    final enteredAmount = amountController.text;
+    if (enteredTitle.isEmpty || enteredAmount.isEmpty) return;
+    widget.addNewTransaction(enteredTitle, enteredAmount);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +43,7 @@ class NewTransaction extends StatelessWidget {
             FlatButton(
               child: Text('Add Transaction'),
               textColor: Colors.purple,
-              onPressed: () {
-                addNewTransaction(titleController.text, double.parse(amountController.text));
-              },
+              onPressed: _submitTransaction,
             )
           ],
         ),
