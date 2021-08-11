@@ -26,7 +26,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(currDay),
         'amount': totalSumForCurrDay
       };
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
