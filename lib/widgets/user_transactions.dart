@@ -2,6 +2,7 @@ import 'package:expense_tracker/models/Transaction.dart';
 import 'package:expense_tracker/widgets/transaction_list.dart';
 import 'package:flutter/material.dart';
 
+/// Defunct
 class UserTransactions extends StatefulWidget {
   @override
   _UserTransactionsState createState() => _UserTransactionsState();
